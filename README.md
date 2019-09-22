@@ -1,7 +1,7 @@
 # Data engineering using Spark-Scala - Hands-on
 ### Tools used: Databricks, Zeppelin • Programming langages: Scala, Spark SQL
 
-[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 The following gist is intended for Data Engineers. It focuses on `Spark` and `Scala`programming.<br>
 If we want to handle `batch` and `real-time` data processing, this gist is definitely worth looking into.<br>
@@ -9,25 +9,21 @@ We'll learn how to install and use `Spark` and `Scala` on a `Linux` system.<br>
 We'll learn the latest `Spark 2.0` methods and updates to the `MLlib` library working with `Spark SQL` and Dataframes.
 Please fork it if you find it relevant for your educational or professional path.
 
-## How is gist is structured
+### How is gist is structured
 This gist is structured into 2 parts:<br>
 
-### Part 1. Installation of JVM, Spark, Scala on a Linux OS
+#### Part 1. Installation of JVM, Spark, Scala on a Linux OS
 Check SCALA_SPARK_INSTALL.md
 
-### Part 2. Spark-Scala programing using Atom, Databricks, Zeppelin
+#### Part 2. Spark-Scala programing using Atom, Databricks, Zeppelin
 
 Check:<br>
 SPARK_SCALA_Programming.md<br>
 SPARK_SCALA_entry.md
 SPARK_SCALA_intermediary.md
   
-## Important
-#### Scala
-`Scala` is a general purpose programming language.<br>
-`Scala` was designed by Martin Odersky (Ecole Polytechnique Fédérale de Lausanne).<br>
-`Scala` source code is intended to be compiled to `Java` bytecode to run on a `Java Virtual Machine` (JVM).<br>
-`Java` librairies can be used directly in `Scala`.<br>
+### Notes related to Spark and Scala
+
 #### Spark
 `Spark` is one of the most powerful `Big Data` tools.<br>
 `Spark` runs programs up to 100x faster than Hadoop's `MapReduce`.<br>
@@ -58,11 +54,20 @@ There are 2 types of `RDD` operations:<br>
   2. IDEs (Integrated Development Environments), such as `IntelliJ` and `Eclipse`
   3. Notebooks, such as `Jupyter`, `Zeppelin` and `Databricks`
 
-# Resources
+#### Scala
+`Scala` is a general purpose programming language.<br>
+`Scala` was designed by Martin Odersky (Ecole Polytechnique Fédérale de Lausanne).<br>
+`Scala` source code is intended to be compiled to `Java` bytecode to run on a `Java Virtual Machine` (JVM).<br>
+`Java` librairies can be used directly in `Scala`.<br>
+
+#### Knowledge base
 
 I've uploaded a `.zip` which contains useful slides `MachineLearning`, `Spark` and `Scala`.<br>
-See datasets.md section of this gist.
-  
+
+#### Storing
+
+For storing datasets and granting access to them, I've used `AWS`.
+
 ## Author
 
 * **Isaac Arnault** - AWS Cloud series - Related tags: #EC2 #TLS #AWSCLI #Linux
