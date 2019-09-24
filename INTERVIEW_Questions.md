@@ -71,7 +71,6 @@ reassigned later on.<br>
   scala> t._4._3
   res50: Int = 6
 ```
-
 #### Questions - Set N°2
 
 1.) Can you figure out what method you can use to find out if the list:
@@ -92,7 +91,7 @@ John, 45
 6.) Print out all the keys
 Add the key value pair ("Mike",27)
 
-#### Answers
+#### Solutions
 
 1.) Can you figure out what method you can use to find out if the list:
 List(1,2,3,4,5) contains the number 3?
