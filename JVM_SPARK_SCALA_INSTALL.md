@@ -22,7 +22,7 @@ If you already have `Java` installed, you can bypass this step.<br>
 [![4.png](https://i.postimg.cc/9fKbYWbn/4.png)](https://postimg.cc/kVNWnPkQ)
 
 </p>
-</details><br>
+</details>
 
 ## scala
 ```r
