@@ -25,7 +25,7 @@ If you already have `Java` installed, you can bypass this step.<br>
 </details><br>
 
 ## scala
-```sh
+```r
 $ sudo apt-get remove scala-library scala  
 $ sudo apt-get update  
 $ sudo apt-get install scala
@@ -44,7 +44,7 @@ If you already have `Scala` installed, you can bypass this step.<br>
 </details>
 
 ## spark
-```sh
+```r
 $ sudo apt-get install git '''use "y + entrer" when prompted by the Command Line Interface'''
 Go to : https://spak.apache.org > Download > Step3: Download Spark (click to download the .tgz file)<br>
 You can also download the Spark package directly at https://bit.ly/2KYLLZQ
@@ -57,17 +57,17 @@ Verify that your spark folder was moved correctly
 $ sudo mv spark-2.4.3-bin-hadoop2.7 */Desktop/spark
 $ cd Desktop/spark
 $ ls
+```
 
 <details>
 <summary>🔴 See output</summary>
 <p> 
   
-[![spark.png](https://i.postimg.cc/G20m6Vzc/spark.png)](https://postimg.cc/XZ8WC2Th)
+[![11.png](https://i.postimg.cc/qR5BX8k8/11.png)](https://postimg.cc/hzVqKQQj)
 
 </p>
 </details>
 
-```
 We can now start using `Spark`:<br>
 . `$ cd Desktop/spark/bin`
 . `$ ./spark-shell`
@@ -76,7 +76,7 @@ We can now start using `Spark`:<br>
 <summary>🔴 See output</summary>
 <p> 
   
-[![spark.png](https://i.postimg.cc/mgVhnm1q/spark.png)](https://postimg.cc/JsD1Dcqc)
+[![12.png](https://i.postimg.cc/brSy6sJ4/12.png)](https://postimg.cc/0Kx1j57C)
 
 </p>
 </details>
