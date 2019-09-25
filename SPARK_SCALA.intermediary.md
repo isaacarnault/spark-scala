@@ -59,7 +59,7 @@ Once the soft is extracted from the tarball and installed on your desktop, perfo
 - execute `$ ./zeppelin.sh` in your terminal and wait for a minute until the application starts
 
 <details>
-<summary>🔴 See command on terminal</summary>
+<summary>🔴 See on terminal</summary>
 <p> 
   
 [![1.png](https://i.postimg.cc/Kv0YW4T4/1.png)](https://postimg.cc/xcbYJftS)
@@ -67,15 +67,6 @@ Once the soft is extracted from the tarball and installed on your desktop, perfo
 </details>
 
 - Use `localhost:8080/` in your web browser to access `Apache Zeppelin` from your computer<br>
-
-<details>
-<summary>🔴 See Zeppelin on localhost</summary>
-<p> 
-  
-[![2.png](https://i.postimg.cc/0jWqVM4s/2.png)](https://postimg.cc/Cnqt11YP)
-
-</p>
-</details>
 
 - Go to Notebook > Create New Note
 
@@ -109,63 +100,68 @@ Upload <b>CitiGroup2006_2008.csv</b> to your `Databricks` and `Zeppelin` environ
 
 ### 1. Loading a csv file as dataframe
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p> 
-
+```r
 import org.apache.spark.sql.SparkSession
-
 val spark = SparkSession.builder().getOrCreate()
 val df = spark.read.option("header","true").option("inferSchema","true").csv("/home/zaki/Desktop/gist/CitiGroup2006_2008.csv")
 
 df.show()
+```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p> 
   
 [![isaac-arnault-zeppelin-1.png](https://i.postimg.cc/2SDV3F7N/isaac-arnault-zeppelin-1.png)](https://postimg.cc/dL5qxCf5)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
-OPTION 1
-
-  ```
+```r
+// OPTION 1
 val df = sqlContext.read.format("csv")
   .option("header", "true")
   .option("inferSchema", "true")
   .load("/FileStore/tables/CitiGroup2006_2008.csv")
-
+  
 display(df)
   ```
   
-[![isaac-arnault-databricks-1.png](https://i.postimg.cc/zv0wjzS8/isaac-arnault-databricks-1.png)](https://postimg.cc/4HHh4TSS)
+<details>
+<summary>🔴 See in Databricks - OPTION 1</summary>
+<p>
+  
+[![11.png](https://i.postimg.cc/kgppcrwZ/11.png)](https://postimg.cc/75S9HWFM)
 
-OPTION 2
+</p>
+</details>
 
-  ```
+```r
+// OPTION 2
 val spark = SparkSession.builder().getOrCreate()
 val df = spark.read.option("header","true").option("inferSchema","true").csv("/FileStore/tables/CitiGroup2006_2008.csv")
 
 df.show()
+```
 
-  ```
+<details>
+<summary>🔴 See in Databricks - OPTION 2</summary>
+<p>
   
-[![isaac-arnault-databricks-1-1.png](https://i.postimg.cc/x88dD6QL/isaac-arnault-databricks-1-1.png)](https://postimg.cc/4HCGpbm3)
+[![16.png](https://i.postimg.cc/L5mVBvPh/16.png)](https://postimg.cc/gXBRGVNP)
 
 </p>
 </details>
  
 ### 2. Get column names
 
+```r
+df.columns
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
-<p> 
-
-  ```
-df.columns
-  ```
+<p>
   
 [![isaac-arnault-databricks-2.png](https://i.postimg.cc/3JcQcKWS/isaac-arnault-databricks-2.png)](https://postimg.cc/LnLWqFtL)
 
@@ -174,11 +170,7 @@ df.columns
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-
-  ```  
-df.columns
-  ```
+<p>
 
 [![isaac-arnault-zeppelin-2.png](https://i.postimg.cc/prr1fFQ2/isaac-arnault-zeppelin-2.png)](https://postimg.cc/7JvVDbQc)
 
@@ -187,14 +179,14 @@ df.columns
   
 ### 3. Get basic statistics
 
+```r
+df.describe().show()
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p> 
 
-  ```
-df.describe().show()
-  ```
-  
 [![isaac-arnault-zeppelin-3.png](https://i.postimg.cc/cHXbtmn9/isaac-arnault-zeppelin-3.png)](https://postimg.cc/zbHj9TpK)
 
 </p>
@@ -202,11 +194,7 @@ df.describe().show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-    ```
-df.describe().show()
-  ```
+<p>
 
 [![isaac-arnault-databricks-3.png](https://i.postimg.cc/zvTpSFbY/isaac-arnault-databricks-3.png)](https://postimg.cc/q6M8pnx1)
 
@@ -215,13 +203,13 @@ df.describe().show()
 
 ### 4. Select one column and show some data
 
+```r
+df.select("Volume").show()
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p> 
-
-  ```
-df.select("Volume").show()
-  ```
   
 [![isaac-arnault-zeppelin-4.png](https://i.postimg.cc/9fV2GLDC/isaac-arnault-zeppelin-4.png)](https://postimg.cc/mPdK4N35)
 
@@ -232,10 +220,6 @@ df.select("Volume").show()
 <summary>🔴 See in Databricks</summary>
 <p> 
   
-    ```
-df.select("Volume").show()
-  ```
-
 [![isaac-arnault-databricks-4.png](https://i.postimg.cc/435gwpct/isaac-arnault-databricks-4.png)](https://postimg.cc/p9p4LhqX)
 
 </p>
@@ -243,13 +227,13 @@ df.select("Volume").show()
   
 ### 5. Select two or more columns and show some data
 
+```r
+df.select($"Date", $"Low", $"Volume").show(10)
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p>
-  
-    ```
-df.select($"Date", $"Low", $"Volume").show(10)
-  ```
   
 [![isaac-arnault-zeppelin-5.png](https://i.postimg.cc/Rhf6WP3K/isaac-arnault-zeppelin-5.png)](https://postimg.cc/bSyNM99w)
 
@@ -259,10 +243,6 @@ df.select($"Date", $"Low", $"Volume").show(10)
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-    ```
-df.select($"Date", $"Low", $"Volume").show(10)
-  ```
 
 [![isaac-arnault-databricks-5.png](https://i.postimg.cc/pVnncd0r/isaac-arnault-databricks-5.png)](https://postimg.cc/3WYRd3QQ)
 
@@ -271,13 +251,13 @@ df.select($"Date", $"Low", $"Volume").show(10)
 
 ### 6. Create a new column from a substraction of two columns
 
+```r
+df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p>
-  
-    ```
-df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
-  ```
   
 [![isaac-arnault-zeppelin-6.png](https://i.postimg.cc/9MKMGssz/isaac-arnault-zeppelin-6.png)](https://postimg.cc/Q9ghDY8r)
 
@@ -287,10 +267,6 @@ df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-    ```
-df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
-  ```
 
 [![isaac-arnault-databricks-6.png](https://i.postimg.cc/3RdN03SP/isaac-arnault-databricks-6.png)](https://postimg.cc/hzRcHRqr)
 
@@ -299,27 +275,27 @@ df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
 
 ### 7. Store operation performed in step 6 as a new dataframe
 
+```r
+val df2 = df.withColumn("HighMinusOpen", df("High")-df("Open"))
+df2.show(5)
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p>
-  
-    ```
-val df2 = df.withColumn("HighMinusOpen", df("High")-df("Open"))
-df2.show(5)
-  ```
   
 [![isaac-arnault-zeppelin-7.png](https://i.postimg.cc/76gnCvBM/isaac-arnault-zeppelin-7.png)](https://postimg.cc/JDzkgFCG)
 
 </p>
 </details>
 
+```r
+df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
+```
+  
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-    ```
-df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
-  ```
+<p>
 
 [![isaac-arnault-databricks-7.png](https://i.postimg.cc/C5SHkvXy/isaac-arnault-databricks-7.png)](https://postimg.cc/hzZdq0KM)
 
@@ -328,13 +304,13 @@ df.withColumn("HighMinusOpen", df("High")-df("Open")).show(5)
 
 ### 8. Print our new dataframe Schema
 
+```r
+df2.printSchema()
+```
+
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p>
-  
-    ```
-df2.printSchema()
-  ```
   
 [![isaac-arnault-zeppelin-8.png](https://i.postimg.cc/65HL4fhS/isaac-arnault-zeppelin-8.png)](https://postimg.cc/Ln1ZrfwB)
 
@@ -344,27 +320,22 @@ df2.printSchema()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-    ```
-df2.printSchema()
-  ```
 
 [![isaac-arnault-databricks-8.png](https://i.postimg.cc/4xmv6HL3/isaac-arnault-databricks-8.png)](https://postimg.cc/QFZWsCrL)
 
 </p>
 </details>
 
-
 ### 9. Rename one column of our dataframe and save it as a new dataframe
+
+```r
+val df3 = df2.withColumnRenamed("HighMinusOpen","HmO")
+df3.show()
+```
 
 <details>
 <summary>🔵 See in Zeppelin</summary>
 <p>
-  
-    ```
-val df3 = df2.withColumnRenamed("HighMinusOpen","HmO")
-df3.show()
-  ```
   
 [![isaac-arnault-zeppelin-9.png](https://i.postimg.cc/hv1vhcVR/isaac-arnault-zeppelin-9.png)](https://postimg.cc/2L3rKpH0)
 
@@ -374,11 +345,6 @@ df3.show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-    ```
-val df3 = df2.withColumnRenamed("HighMinusOpen","HmO")
-df3.show()
-  ```
 
 [![isaac-arnault-databricks-9.png](https://i.postimg.cc/NFBG3SSJ/isaac-arnault-databricks-9.png)](https://postimg.cc/ygpz9QVc)
 
@@ -388,14 +354,14 @@ df3.show()
 ### 10. Dataframe operations
   > Filtering on a column - Using Scala "$" instead of Spark SQL
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 df.filter($"Open">480).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-10.png](https://i.postimg.cc/J016q6XC/isaac-arnault-zeppelin-10.png)](https://postimg.cc/TL4J2cQt)
 
@@ -405,11 +371,6 @@ df.filter($"Open">480).show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-import spark.implicits._
-df.filter($"Open">480).show()
-```
 
 [![isaac-arnault-databricks-10.png](https://i.postimg.cc/cCXD5R7g/isaac-arnault-databricks-10.png)](https://postimg.cc/9wwtDqnC)
 
@@ -418,16 +379,16 @@ df.filter($"Open">480).show()
 
   > Filtering on a column - Using Spark SQL
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 df.filter("Open>480").show()  
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
     
-[![isaac-arnault-zeppelin-10-2.png](https://i.postimg.cc/j5hvLHFg/isaac-arnault-zeppelin-10-2.png)](https://postimg.cc/tZYFcxyW)
+[![14.png](https://i.postimg.cc/J4PrRn4k/14.png)](https://postimg.cc/KR3SNmTG)
 
 </p>
 </details>
@@ -435,11 +396,6 @@ df.filter("Open>480").show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-import spark.implicits._
-df.filter("Open>480").show()
-```
 
 [![isaac-arnault-databricks-10-2.png](https://i.postimg.cc/cC4hYKqs/isaac-arnault-databricks-10-2.png)](https://postimg.cc/1n2D135T)
 
@@ -448,14 +404,14 @@ df.filter("Open>480").show()
 
   > Filtering on multiple columns - Using Scala "$" instead of Spark SQL
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 df.filter($"Low"<481 && $"High">484).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
     
 [![isaac-arnault-zeppelin-10-3.png](https://i.postimg.cc/SQvv0pwJ/isaac-arnault-zeppelin-10-3.png)](https://postimg.cc/yW0P926H)
 
@@ -465,11 +421,6 @@ df.filter($"Low"<481 && $"High">484).show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-import spark.implicits._
-df.filter($"Low"<481 && $"High">484).show()
-```
 
 [![isaac-arnault-databricks-10-3.png](https://i.postimg.cc/PJ931mmm/isaac-arnault-databricks-10-3.png)](https://postimg.cc/fS7fNSqL)
 
@@ -478,13 +429,13 @@ df.filter($"Low"<481 && $"High">484).show()
 
   > Filtering on multiple columns - Using Spark SQL
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df.filter("Low<481 AND High>484").show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-10-4.png](https://i.postimg.cc/WpdPqSVq/isaac-arnault-zeppelin-10-4.png)](https://postimg.cc/NLvnW65Q)
 
@@ -494,10 +445,6 @@ df.filter("Low<481 AND High>484").show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-df.filter("Low<481 AND High>484").show()
-```
 
 [![isaac-arnault-databricks-10-4.png](https://i.postimg.cc/4yDPYXgP/isaac-arnault-databricks-10-4.png)](https://postimg.cc/0KCD3RrK)
 
@@ -508,14 +455,14 @@ df.filter("Low<481 AND High>484").show()
 
   > Filtering on multiple columns and collect the results as an array - Using Scala
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 val CH_compare = df.filter("Low<481 AND High>484").collect()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-10-5.png](https://i.postimg.cc/bJwyhKwJ/isaac-arnault-zeppelin-10-5.png)](https://postimg.cc/SXHFL18F)
 
@@ -525,11 +472,6 @@ val CH_compare = df.filter("Low<481 AND High>484").collect()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-import spark.implicits._
-val CH_compare = df.filter("Low<481 AND High>484").collect()
-```
 
 [![isaac-arnault-databricks-10-5.png](https://i.postimg.cc/TP9dBRGF/isaac-arnault-databricks-10-5.png)](https://postimg.cc/B8jfKfjB)
 
@@ -538,14 +480,14 @@ val CH_compare = df.filter("Low<481 AND High>484").collect()
 
   > Filtering on multiple columns and check how many results are returned - Using Scala
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 val CH_compare = df.filter("Low<481 AND High>484").count()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-10-6.png](https://i.postimg.cc/JnRDtd09/isaac-arnault-zeppelin-10-6.png)](https://postimg.cc/R3bVDdcR)
 
@@ -555,11 +497,6 @@ val CH_compare = df.filter("Low<481 AND High>484").count()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-import spark.implicits._
-val CH_compare = df.filter("Low<481 AND High>484").count()
-```
 
 [![isaac-arnault-databricks-10-6.png](https://i.postimg.cc/QC1pvY4C/isaac-arnault-databricks-10-6.png)](https://postimg.cc/tnRZxkHG)
 
@@ -568,14 +505,14 @@ val CH_compare = df.filter("Low<481 AND High>484").count()
 
   > 10.7 Filtering on a column for equality 
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 df.filter($"Low" === 484).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-databricks-10-7.png](https://i.postimg.cc/qBxqZdQn/isaac-arnault-databricks-10-7.png)](https://postimg.cc/pyyPp4wX)
 
@@ -584,11 +521,7 @@ df.filter($"Low" === 484).show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-df.filter($"Low" === 484).show()
-```
+<p>
 
 [![isaac-arnault-databricks-10-7.png](https://i.postimg.cc/qBxqZdQn/isaac-arnault-databricks-10-7.png)](https://postimg.cc/pyyPp4wX)
 
@@ -597,27 +530,27 @@ df.filter($"Low" === 484).show()
 
   > 10.8 Dataframe operations - Correlation (Pearson)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import spark.implicits._
 df.select(corr("Open","Close")).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-10-8.png](https://i.postimg.cc/rmKXLB4M/isaac-arnault-zeppelin-10-8.png)](https://postimg.cc/8JQnRnw0)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 df.stat.corr("Open", "Close")
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
 
 [![isaac-arnault-databricks-10-8.png](https://i.postimg.cc/438brdV2/isaac-arnault-databricks-10-8.png)](https://postimg.cc/wtmmN9WD)
 
@@ -628,10 +561,6 @@ df.stat.corr("Open", "Close")
 
 Upload <b>Sales.csv</b> to your `Databricks` and `Zeppelin` environments before you proceed as follows.
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import org.apache.spark.sql.SparkSession
 Upload <b>Sales.csv</b> to your `Databricks` and `Zeppelin` environments before you proceed.
@@ -642,14 +571,15 @@ val df_Sales = spark.read.option("header","true").option("inferSchema","true").c
 df_Sales.show()
 ```
 
-[![isaac-arnault-databricks-11.png](https://i.postimg.cc/3RMz0nbH/isaac-arnault-databricks-11.png)](https://postimg.cc/XZ8sTcb2)
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
+  
+[![18.png](https://i.postimg.cc/0yHxTB2R/18.png)](https://postimg.cc/NKTWTbHp)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
   
 ```r
 val df_Sales = sqlContext.read.format("csv")
@@ -660,20 +590,24 @@ val df_Sales = sqlContext.read.format("csv")
 display(df_Sales)
 ```
 
-[![isaac-arnault-zeppelin-11.png](https://i.postimg.cc/25LP5PGw/isaac-arnault-zeppelin-11.png)](https://postimg.cc/cKZD9kVg)
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
+
+[![17.png](https://i.postimg.cc/90tCsXzJ/17.png)](https://postimg.cc/V06xC8qC)
 
 </p>
 </details>
 
   > Dataframes operations - Group By and Aggregate (Count)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.groupBy("Company").count().show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-11-1.png](https://i.postimg.cc/VN35rP8L/isaac-arnault-zeppelin-11-1.png)](https://postimg.cc/yJy7t5xw)
 
@@ -682,11 +616,7 @@ df_Sales.groupBy("Company").count().show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-df_Sales.groupBy("Company").count().show()
-```
+<p>
   
 [![isaac-arnault-databricks-11-1.png](https://i.postimg.cc/HWb8MnjG/isaac-arnault-databricks-11-1.png)](https://postimg.cc/Wtb4L2MS)
 
@@ -695,13 +625,13 @@ df_Sales.groupBy("Company").count().show()
 
   > Dataframes operations - Group By and Aggregate (Mean)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.groupBy("Company").mean().show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-11-2.png](https://i.postimg.cc/CKZzxL9Q/isaac-arnault-zeppelin-11-2.png)](https://postimg.cc/yJHVfB1m)
 
@@ -710,11 +640,7 @@ df_Sales.groupBy("Company").mean().show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-df_Sales.groupBy("Company").mean().show()
-```
+<p>
 
 [![isaac-arnault-databricks-11-2.png](https://i.postimg.cc/cC7KG9P1/isaac-arnault-databricks-11-2.png)](https://postimg.cc/H8xWQ2pF)
 
@@ -723,15 +649,15 @@ df_Sales.groupBy("Company").mean().show()
 
   > Dataframes operations - Group By (common statistics)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.groupBy("Company").min().show()
 df_Sales.groupBy("Company").max().show()
 df_Sales.groupBy("Company").sum().show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-11-3.png](https://i.postimg.cc/rwWRcpWF/isaac-arnault-zeppelin-11-3.png)](https://postimg.cc/DSvwPnBt)
 
@@ -741,12 +667,6 @@ df_Sales.groupBy("Company").sum().show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-df_Sales.groupBy("Company").min().show()
-df_Sales.groupBy("Company").max().show()
-df_Sales.groupBy("Company").sum().show()
-```
 
 [![isaac-arnault-databricks-11-3.png](https://i.postimg.cc/65F4DZ8m/isaac-arnault-databricks-11-3.png)](https://postimg.cc/xcydmcyv)
 
@@ -755,29 +675,29 @@ df_Sales.groupBy("Company").sum().show()
 
   > Dataframes operations - Aggregate (sum)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.select(sum("Sales")).show()
 ```
 
-[![isaac-arnault-zeppelin-11-4.png](https://i.postimg.cc/N0dswhNj/isaac-arnault-zeppelin-11-4.png)](https://postimg.cc/SXzFWPFB)
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
+
+[![isaac-arnault-databricks-11-4.png](https://i.postimg.cc/bvyyMY95/isaac-arnault-databricks-11-4.png)](https://postimg.cc/yDGC3H5h)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 import sqlContext.implicits._
 import org.apache.spark.sql.functions._
 
 df_Sales.select(sum("Sales")).show()
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
 
 [![isaac-arnault-databricks-11-4.png](https://i.postimg.cc/wv36qWPc/isaac-arnault-databricks-11-4.png)](https://postimg.cc/Fd5tGxh7)
 
@@ -786,10 +706,6 @@ df_Sales.select(sum("Sales")).show()
 
   > Dataframes operations - Aggregate (other useful operations)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.select(countDistinct("Sales")).show()
 df_Sales.select(sumDistinct("Sales")).show()
@@ -797,15 +713,16 @@ df_Sales.select(variance("Sales")).show()
 df_Sales.select(stddev("Sales")).show() // standard deviation
 df_Sales.select(collect_set("Sales")).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-11-5.png](https://i.postimg.cc/t4SqKQvC/isaac-arnault-zeppelin-11-5.png)](https://postimg.cc/Sn9b95pw)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
   
 ```r
 import sqlContext.implicits._
@@ -817,6 +734,10 @@ df_Sales.select(variance("Sales")).show()
 df_Sales.select(stddev("Sales")).show() // standard deviation
 df_Sales.select(collect_set("Sales")).show()
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
   
 [![isaac-arnault-databricks-11-5.png](https://i.postimg.cc/FHsFCsZB/isaac-arnault-databricks-11-5.png)](https://postimg.cc/xchScQBv)
 
@@ -825,23 +746,19 @@ df_Sales.select(collect_set("Sales")).show()
 
   > Dataframes operations - Order By (using Spark SQL)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Sales.show()
 df_Sales.orderBy("Sales").show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-11-6.png](https://i.postimg.cc/d3HNqBbd/isaac-arnault-zeppelin-11-6.png)](https://postimg.cc/LgP3Dz66)
 
 </p>
 </details>
-
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
 
 ```r
 import sqlContext.implicits._
@@ -850,6 +767,10 @@ import org.apache.spark.sql.functions._
 df_Sales.show()
 df_Sales.orderBy("Sales").show()
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p>
   
 [![isaac-arnault-databricks-11-6.png](https://i.postimg.cc/HnsPDKhd/isaac-arnault-databricks-11-6.png)](https://postimg.cc/8J9bLyG0)
 
@@ -858,10 +779,6 @@ df_Sales.orderBy("Sales").show()
 
 > Dataframes operations - Order By (using scala)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 import org.apache.spark.sql.SparkSession
 
@@ -870,16 +787,16 @@ val df_Null = spark.read.option("header","true").option("inferSchema","true").cs
 
 df_Null.show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-11-7.png](https://i.postimg.cc/6pdVccM0/isaac-arnault-zeppelin-11-7.png)](https://postimg.cc/68pG5rJ2)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 val df_Null = sqlContext.read.format("csv")
   .option("header", "true")
@@ -889,6 +806,10 @@ val df_Null = sqlContext.read.format("csv")
 display(df_Null)
 ```
 
+<details>
+<summary>🔴 See in Databricks</summary>
+<p>
+
 [![isaac-arnault-databricks-11-7.png](https://i.postimg.cc/CxyHbXs5/isaac-arnault-databricks-11-7.png)](https://postimg.cc/KRNM29Vh)
 
 </p>
@@ -897,15 +818,15 @@ display(df_Null)
   > Dataframes operations - Missing data (New dataset)
 
 Upload <b>ContainsNull.csv</b> to your `Databricks` and `Zeppelin` environments before you proceed as follows.
-
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
   
 ```r
 df_Sales.show()
 df_Sales.orderBy($"Sales".desc).show(3)
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-12.png](https://i.postimg.cc/sX9C4DmT/isaac-arnault-zeppelin-12.png)](https://postimg.cc/wyvr6zSN)
 
@@ -915,27 +836,22 @@ df_Sales.orderBy($"Sales".desc).show(3)
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-df_Sales.show()
-df_Sales.orderBy($"Sales".desc).show(3)
-```
 
-[![isaac-arnault-databricks-12.png](https://i.postimg.cc/Y9wwFm64/isaac-arnault-databricks-12.png)](https://postimg.cc/FfGq5znm)
+[![15.png](https://i.postimg.cc/dtTbxVZF/15.png)](https://postimg.cc/ZC4s9ZLs)
 
 </p>
 </details>
 
   > Dataframes operations - Missing data (Drop)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Null.show()
 df_Null.na.drop().show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-12-1.png](https://i.postimg.cc/7PBDbhWV/isaac-arnault-zeppelin-12-1.png)](https://postimg.cc/6TGFmWw2)
 
@@ -944,12 +860,7 @@ df_Null.na.drop().show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-
-```r
-df_Null.show()
-df_Null.na.drop().show()
-```
+<p>
   
 [![isaac-arnault-databricks-12-1.png](https://i.postimg.cc/mk6GnpHq/isaac-arnault-databricks-12-1.png)](https://postimg.cc/64RS20zL)
 
@@ -957,15 +868,15 @@ df_Null.na.drop().show()
 </details>
 
   > Dataframes operations - Missing data (Fill)
-
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
   
 ```r
 df_Null.show()
 df_Null.na.fill(42).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-12-2.png](https://i.postimg.cc/NGxVjn5v/isaac-arnault-zeppelin-12-2.png)](https://postimg.cc/qgzQmjs1)
 
@@ -975,11 +886,6 @@ df_Null.na.fill(42).show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-df_Null.show()
-df_Null.na.fill(42).show()
-```
 
 [![isaac-arnault-databricks-12-2.png](https://i.postimg.cc/YSc83Nhx/isaac-arnault-databricks-12-2.png)](https://postimg.cc/hXr94d8J)
 
@@ -987,16 +893,16 @@ df_Null.na.fill(42).show()
 </details>
 
   > Dataframes operations - Missing data (Fill a specific column, "Name", with a string)
-
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
   
 ```r
 df_Null.show()
 val clean_dfX = df_Null.na.fill("Name X", Array("Name")) 
 clean_dfX.show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-12-3.png](https://i.postimg.cc/bNMVtKbG/isaac-arnault-zeppelin-12-3.png)](https://postimg.cc/ZC8LkswZ)
 
@@ -1005,13 +911,7 @@ clean_dfX.show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-df_Null.show()
-val clean_dfX = df_Null.na.fill("Name X", Array("Name")) 
-clean_dfX.show()
-```
+<p>
 
 [![isaac-arnault-databricks-12-3.png](https://i.postimg.cc/L4QNcrxy/isaac-arnault-databricks-12-3.png)](https://postimg.cc/bdbxbFcb)
 
@@ -1020,15 +920,15 @@ clean_dfX.show()
 
   > Dataframes operations - Missing data (Fill a specific column, "Sales", with an integer)
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Null.show()
 val clean_dfY = clean_dfX.na.fill(50, Array("Sales"))
 clean_dfY.show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-databricks-12-4.png](https://i.postimg.cc/hvYsVdJF/isaac-arnault-databricks-12-4.png)](https://postimg.cc/n9vqJMYT)
 
@@ -1037,30 +937,24 @@ clean_dfY.show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-df_Null.show()
-val clean_dfY = clean_dfX.na.fill(50, Array("Sales"))
-clean_dfY.show()
-```
+<p>
 
-[![isaac-arnault-databricks-12-4.png](https://i.postimg.cc/PJVZBnh1/isaac-arnault-databricks-12-4.png)](https://postimg.cc/xNHcz7Xd)
+[![isaac-arnault-databricks-12-4.png](https://i.postimg.cc/hvYsVdJF/isaac-arnault-databricks-12-4.png)](https://postimg.cc/n9vqJMYT)
 
 </p>
 </details>
 
   > Dataframes operations - Filling missing data in multiple columns simulateously
 
-<details>
-<summary>🔵 See in Zeppelin</summary>
-<p>
-  
 ```r
 df_Null.show()
 val clean_dfZ = df_Null.na.fill(60, Array("Sales"))
 clean_dfZ.na.fill("Name Z", Array("Name")).show()
 ```
+
+<details>
+<summary>🔵 See in Zeppelin</summary>
+<p>
 
 [![isaac-arnault-zeppelin-12-5.png](https://i.postimg.cc/HW6hpJk9/isaac-arnault-zeppelin-12-5.png)](https://postimg.cc/jCJXcSND)
 
@@ -1070,12 +964,6 @@ clean_dfZ.na.fill("Name Z", Array("Name")).show()
 <details>
 <summary>🔴 See in Databricks</summary>
 <p> 
-  
-```r
-df_Null.show()
-val clean_dfZ = df_Null.na.fill(60, Array("Sales"))
-clean_dfZ.na.fill("Name Z", Array("Name")).show()
-```
 
 [![isaac-arnault-databricks-12-5.png](https://i.postimg.cc/4yywK5xb/isaac-arnault-databricks-12-5.png)](https://postimg.cc/n98qgq7C)
 
@@ -1083,12 +971,9 @@ clean_dfZ.na.fill("Name Z", Array("Name")).show()
 </details>
 
 #### 13 Dates and Timestamps
-We'll re-take <br>CitiGroup2006_2008.csv</b> dataset once again for this part of the gist.<br>
+Let's re-take <br>CitiGroup2006_2008.csv</b> dataset once again for this part of the gist.<br>
 
 <details>
-  
-<summary>🔵 See in Zeppelin</summary>
-<p> 
 
 ```r
 val Date_Time = sqlContext.read.format("csv")
@@ -1098,16 +983,15 @@ val Date_Time = sqlContext.read.format("csv")
 
 Date_Time.show()
 ```
+
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-13.png](https://i.postimg.cc/s2w7vfjd/isaac-arnault-zeppelin-13.png)](https://postimg.cc/06Kb4sKc)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 val Date_Time = sqlContext.read.format("csv")
   .option("header", "true")
@@ -1116,6 +1000,9 @@ val Date_Time = sqlContext.read.format("csv")
 
 display(Date_Time)
 ```
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
   
 [![isaac-arnault-zeppelin-13.png](https://i.postimg.cc/s2w7vfjd/isaac-arnault-zeppelin-13.png)](https://postimg.cc/06Kb4sKc)
 
@@ -1126,27 +1013,25 @@ display(Date_Time)
 
 <details>
   
-<summary>🔵 See in Zeppelin</summary>
-<p> 
-
 ```r
 Date_Time.select(month(Date_Time("Date"))).show()
 ```
+<summary>🔵 See in Zeppelin</summary>
+<p> 
   
 [![isaac-arnault-zeppelin-13-1.png](https://i.postimg.cc/59Z7xgK5/isaac-arnault-zeppelin-13-1.png)](https://postimg.cc/K4DrfP24)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 import sqlContext.implicits._
 import org.apache.spark.sql.functions._
 Date_Time.select(month(Date_Time("Date"))).show()
 ```
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
     
 [![isaac-arnault-databricks-13-1.png](https://i.postimg.cc/VLn75t2x/isaac-arnault-databricks-13-1.png)](https://postimg.cc/fJW7rVzC)
 
@@ -1157,27 +1042,27 @@ Date_Time.select(month(Date_Time("Date"))).show()
 
 <details>
   
-<summary>🔵 See in Zeppelin</summary>
-<p> 
-
 ```r
 Date_Time.select(year(Date_Time("Date"))).show()
 ```
+
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-13-2.png](https://i.postimg.cc/SR8G2016/isaac-arnault-zeppelin-13-2.png)](https://postimg.cc/4Hfcq0gy)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 import sqlContext.implicits._
 import org.apache.spark.sql.functions._
 Date_Time.select(year(Date_Time("Date"))).show()
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
   
 [![isaac-arnault-databricks-13-2.png](https://i.postimg.cc/qRWLvBwB/isaac-arnault-databricks-13-2.png)](https://postimg.cc/N97TNcZZ)
 
@@ -1187,30 +1072,31 @@ Date_Time.select(year(Date_Time("Date"))).show()
 > Dates and Timestamps - returns a variable's average for each year
 
 <details>
-  
-<summary>🔵 See in Zeppelin</summary>
-<p> 
+
 
 ```r
 val new_df = Date_Time.withColumn("Year", year(Date_Time("Date")))
 val df_avg = new_df.groupBy("Year").mean()
 df_avg.select($"Year",$"avg(High)").show()
 ```
+
+<summary>🔵 See in Zeppelin</summary>
+<p> 
   
 [![isaac-arnault-zeppelin-13-3.png](https://i.postimg.cc/0jpp5YrZ/isaac-arnault-zeppelin-13-3.png)](https://postimg.cc/V0kSDbqb)
 
 </p>
 </details>
 
-<details>
-<summary>🔴 See in Databricks</summary>
-<p> 
-  
 ```r
 val new_df = Date_Time.withColumn("Year", year(Date_Time("Date")))
 val df_avg = new_df.groupBy("Year").mean()
 df_avg.select($"Year",$"avg(High)").show()
 ```
+
+<details>
+<summary>🔴 See in Databricks</summary>
+<p> 
   
 [![isaac-arnault-databricks-13-3.png](https://i.postimg.cc/XqMf0HNp/isaac-arnault-databricks-13-3.png)](https://postimg.cc/4757619g)
 
@@ -1220,9 +1106,7 @@ df_avg.select($"Year",$"avg(High)").show()
   > Dates and Timestamps - returns a variable Min and Max for each year
 
 <details>
-  
-<summary>🔵 See in Zeppelin</summary>
-<p> 
+
 
 ```r
 val new_df = Date_Time.withColumn("Year", year(Date_Time("Date")))
@@ -1232,6 +1116,9 @@ val df_max = new_df.groupBy("Year").max()
 df_min.select($"Year",$"min(Volume)").show()
 df_max.select($"Year",$"max(Volume)").show()
 ```
+
+<summary>🔵 See in Zeppelin</summary>
+<p>
   
 [![isaac-arnault-zeppelin-13-4.png](https://i.postimg.cc/L87h7q8s/isaac-arnault-zeppelin-13-4.png)](https://postimg.cc/dh2qZVdM)
 
@@ -1240,16 +1127,7 @@ df_max.select($"Year",$"max(Volume)").show()
 
 <details>
 <summary>🔴 See in Databricks</summary>
-<p> 
-  
-```r
-val new_df = Date_Time.withColumn("Year", year(Date_Time("Date")))
-val df_min = new_df.groupBy("Year").min()
-val df_max = new_df.groupBy("Year").max()
-
-df_min.select($"Year",$"min(Volume)").show()
-df_max.select($"Year",$"max(Volume)").show()
-```
+<p>
     
 [![isaac-arnault-databricks-13-4.png](https://i.postimg.cc/fb9khwVf/isaac-arnault-databricks-13-4.png)](https://postimg.cc/94ccdHtD)
 
