@@ -74,13 +74,13 @@ reassigned later on.<br>
 #### Questions - Set N°2
 
 1.) Can you figure out what method you can use to find out if the list:
-List(1,2,3,4,5) contains the number 3?
+List(1, 2, 3, 4, 5) contains the number 3?
 
 2.) How can you add all the elements of the previous list?
 
 3.) Create an Array of all the odd numbers from 0 to 15
 
-4.) What are the unique elements in the list: List(2,3,1,4,5,6,6,1,2)?
+4.) What are the unique elements in the list: List(2, 3, 1, 4, 5, 6, 6, 1, 2)?
 
 5.) Create a mutable map that maps together Names to Ages.
 It should have the following key value pairs:<br>
@@ -96,7 +96,7 @@ Add the key value pair ("Mike",27)
 1.) Can you figure out what method you can use to find out if the list:
 List(1,2,3,4,5) contains the number 3?
 ```r
-scala> val li = List(1,2,3,4,5)
+scala> val li = List(1, 2, 3, 4, 5)
 li: List[Int] = List(1, 2, 3, 4, 5)
 ```
 ```r
@@ -110,12 +110,12 @@ res43: Int = 15
 ```
 3.) Create an Array of all the odd numbers from 0 to 15
 ```r
-scala> val odds = Array.range(1,15,2)
+scala> val odds = Array.range(1, 15, 2)
 odds: Array[Int] = Array(1, 3, 5, 7, 9, 11, 13)
 ```
-4.) What are the unique elements in the list: List(2,3,1,4,5,6,6,1,2)?
+4.) What are the unique elements in the list: List(2, 3, 1, 4, 5, 6, 6, 1, 2)?
 ```r
-scala> val mylist = List(2,3,1,4,5,6,6,1,2)
+scala> val mylist = List(2, 3, 1, 4, 5, 6, 6, 1, 2)
 mylist: List[Int] = List(2, 3, 1, 4, 5, 6, 6, 1, 2)
 ```
 ```r
@@ -130,10 +130,8 @@ Frankie, 7
 John, 45
 ```
 ```r
-scala> val names = collection.mutable.Map(("Sammy",3),("Frankie",7),("Joh
-n",45))
-names: scala.collection.mutable.Map[String,Int] = Map(Sammy -> 3, Frankie
- -> 7, John -> 45)
+scala> val names = collection.mutable.Map(("Sammy",3),("Frankie",7),("John",45))
+names: scala.collection.mutable.Map[String,Int] = Map(Sammy -> 3, Frankie -> 7, John -> 45)
 ```
 6.) Print out all the keys
 ```r
