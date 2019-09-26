@@ -554,3 +554,265 @@ mylist: List[Int] = List(1, 2, 3, 1, 2, 3)
 scala > mylist.toSet
 res59: scala.collection.immutable.Set[Int] = Set(1, 2, 3)
 ```
+
+# 10. Loops  
+##### For loops
+
+```r
+// Looping an integer
+
+for(item <- List(1,2,3)){
+  println(item)
+}
+```
+```r
+// Looping an array
+
+for(item <- Array.range(0,5)){
+  println(item)
+}
+
+```r
+// Looping a set
+
+for(item <- Set(2,4,9,1,3)){
+  println(item)
+}
+```
+```r
+// Looping with If Else
+
+// for loop and else if script
+
+for(num <- Range(0,10)){
+  if(num%2 == 0){
+    println(s"$num is even")
+  }else{
+    println(s"$num is odd")
+  }
+}
+```
+```r
+// Looping from a list and retrieving one or more results
+
+val names = List("Beerus", "Champa", "Karin", "Kaio", "Dende", "Dodoria")
+
+for(name <- names){
+  if(name.startsWith("D")){
+    println(s"$name starts with a D")
+  }
+}
+```
+##### While loops
+```r
+// Looping with a variable 
+
+var x = 0
+
+while(x < 5){ // boolean condition
+  println(s"x is currenly $x")
+  println("x is still less than 5, adding 1 to x")
+  x = x+1 // adding 1 to x and iterating until we reach 5
+  println(s"x is currenly $x")
+}
+```
+
+#### 11. if else
+a.) Create a ifelse.scala file in ```Atom```<br>
+b.) launch your spark session ```:load```<br>
+c.) ```:load``` your file with the following command: ```// load: url-path/ifelse.scala```
+
+
+  > 1. COMPARISON operators - one condition
+```r
+// if else - script 1
+val x = "goku"
+
+if(x.endsWith("b")){
+  println("value of x ends with b")
+}else{
+  println("value of x does not end with b")
+}
+```
+
+```r
+// if else - script 2
+val person = "Champa"
+
+if(person == "Beerus"){
+  println("Your Majesty Beerus, this is your bento!")
+}else{
+  println("You can't have a bento, sorry!")
+}
+```
+
+  > 2. LOGICAL operators - multiple conditions
+
+```r
+// if else - script 3
+// AND operator - if both conditions are true, program will return "true", if not it will return "false"
+
+println((1 == 2) && (2 == 2)) // && means "AND"
+```
+
+```r
+println((4 == 4) && ("b" == "b"))
+```
+
+```r
+// OR operator - if one of both conditions is true, program will return "true", if not it will return "false"
+println((4 == 3) || ("e" == "e")) // "||" means "OR"
+```
+
+```r
+// NOT operator - if condition is not "true", program will return "false"
+print(!(1 == 1)) // "!" biaises the results and program returns "false" in that case
+```
+
+#### 12. Other commands you can try
+#### Reverse object
+
+```r
+object Reverse {
+    def apply (s: String): String =
+    s.reverse
+}
+```
+```r
+Reverse("Kiara")
+```
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala1.png](https://i.postimg.cc/N018f4QN/isaac-arnault-scala1.png)](https://postimg.cc/Z95vw6B3)
+
+</p>
+</details>
+
+#### Arrays
+```r
+Array (1, 2, 3, 4, 5, 6, 7, 8, 9)
+```
+```r
+res0(2)
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala2.png](https://i.postimg.cc/wjNL0VR6/isaac-arnault-scala2.png)](https://postimg.cc/dhqh0G9X)
+
+</p>
+</details>
+
+#### hashCode
+
+```r
+case class Time(hours: Int = 0, minutes: Int = 0)
+```
+```r
+Time (9, 45).hashCode()
+```
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-3.png](https://i.postimg.cc/65kG2vjF/isaac-arnault-scala-3.png)](https://postimg.cc/VdFN2dcF)
+
+</p>
+</details>
+
+#### flatMap
+
+```r
+List ("Goten", "Trunks", "Gotenks")
+```
+```r
+res0.map(lang => lang + "#")
+```
+```r
+res0.flatMap (lang => lang + "#")
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala4.png](https://i.postimg.cc/fRQJThkN/isaac-arnault-scala4.png)](https://postimg.cc/SJVyD3WT)
+
+</p>
+</details>
+
+#### filter
+
+```r
+List ("Goku", "Vegeta", "Broly", "Freezer")
+```
+```r
+res0.filter(lang => lang.contains("e"))
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-5.png](https://i.postimg.cc/8C1cMBhX/isaac-arnault-scala-5.png)](https://postimg.cc/qN5pdKD2)
+
+</p>
+</details>
+
+#### reduce
+
+```r
+1 to 10
+```
+```r
+res0.reduce(_+_)
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-6.png](https://i.postimg.cc/261ZL7YR/isaac-arnault-scala-6.png)](https://postimg.cc/S2psw8jD)
+
+</p>
+</details>
+
+#### fold, foldLeft, foldRight
+
+```r
+1 to 6
+```
+```r
+res0.product
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-7.png](https://i.postimg.cc/yxXYDDDC/isaac-arnault-scala-7.png)](https://postimg.cc/7JhycY1K)
+
+</p>
+</details>
+
+#### exists
+
+```r
+1 to 18
+```
+```r
+res0.exists(num => num == 12)
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-7.png](https://i.postimg.cc/yxXYDDDC/isaac-arnault-scala-7.png)](https://postimg.cc/7JhycY1K)
+
+</p>
+</details>
