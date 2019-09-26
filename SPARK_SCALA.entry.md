@@ -816,3 +816,25 @@ res0.exists(num => num == 12)
 
 </p>
 </details>
+
+#### copy
+```r
+val fighter1 = K9("Trunks", "Goten Trunks Fusion")
+fighter1
+```
+```r
+val fighter2 = fighter1.copy()
+fighter2
+```
+```r
+fighter1 == fighter2
+```
+
+<details>
+<summary>🔴 See output</summary>
+<p> 
+  
+[![isaac-arnault-scala-9.png](https://i.postimg.cc/KvnDbT2c/isaac-arnault-scala-9.png)](https://postimg.cc/Wh1k6hzx)
+
+</p>
+</details>
