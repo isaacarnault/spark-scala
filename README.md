@@ -10,17 +10,15 @@ We'll learn the latest `Spark 2.0` methods and updates to the `MLlib` library wo
 Please fork it if you find it relevant for your educational or professional path.
 
 ### How is gist is structured
-This gist is structured into 2 parts:<br>
+This gist is structured into 2 parts.<br>
 
 #### Part 1. Installation of JVM, Spark, Scala on a Linux OS
-Check SCALA_SPARK_INSTALL.md
+Related section: SCALA_SPARK_INSTALL
 
 #### Part 2. Spark-Scala programing using Atom, Databricks, Zeppelin
 
-Check:<br>
-SPARK_SCALA_Programming.md<br>
-SPARK_SCALA_entry.md
-SPARK_SCALA_intermediary.md
+Related sections: SPARK_SCALA_Programming, SPARK_SCALA_entry
+SPARK_SCALA_intermediary
   
 ### Notes related to Spark and Scala
 
