@@ -1,3 +1,5 @@
+[![1-fg-Hs-M19o-Tdmv-FWEKu-Zl5-HQ.png](https://i.postimg.cc/wTsJDnHL/1-fg-Hs-M19o-Tdmv-FWEKu-Zl5-HQ.png)](https://postimg.cc/SJkJhTnx)
+
 # Data engineering using Spark-Scala - Hands-on
 ### Tools used: Databricks, Zeppelin • Programming langages: Scala, Spark SQL
 
