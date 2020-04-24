@@ -2,7 +2,6 @@
 ### Tools used: Databricks, Zeppelin • Programming langages: Scala, Spark SQL
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
 The following gist is intended for Data Engineers. It focuses on `Spark` and `Scala`programming.<br>
 If we want to handle `batch` and `real-time` data processing, this gist is definitely worth looking into.<br>
 We'll learn how to install and use `Spark` and `Scala` on a `Linux` system.<br>
